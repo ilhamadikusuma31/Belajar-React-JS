@@ -25,11 +25,12 @@
     </script> -->
     <script>
         const root = document.querySelector('#root');
+
         const elemen = React.createElement('h1', {
             children: 'hello world, aku adalah child root pake (react.js)',
             className: 'heading-1',
-        })
-
+        });
+        //yang mau dirender, target renderan
         ReactDOM.render(elemen, root);
     </script>
 </body>

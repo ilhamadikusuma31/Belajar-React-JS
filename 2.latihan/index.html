@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script>
+        const root = document.querySelector('#root');
+        const paragraf1 = React.createElement('p', {
+            children: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, veritatis dolorem officia voluptates omnis molestias maxime laboriosam exercitationem aut reiciendis.',
+
+        });
+        const paragraf2 = React.createElement('p', {
+            children: 'Ini paragraf kedua ceritanya hehe boy.',
+
+        });
+
+
+        //kalo ada 2 elemen atau lebih harus dibungkus
+        const div = React.createElement('div', {
+            children: [paragraf1, paragraf2],
+        })
+        ReactDOM.render(div, root);
+    </script>
+</body>
+
+</html>
