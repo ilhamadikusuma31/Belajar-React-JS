@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- <script>
+        const root = document.querySelector('#root');
+        const elemen = document.createElement('h1');
+        elemen.textContent = 'hello world, aku adalah child root pake (vanilla js)';
+        elemen.classList.name = 'heading-1';
+        root.appendChild(elemen);
+    </script> -->
+    <script>
+        const root = document.querySelector('#root');
+        const elemen = React.createElement('h1', {
+            children: 'hello world, aku adalah child root pake (react.js)',
+            className: 'heading-1',
+        })
+
+        ReactDOM.render(elemen, root);
+    </script>
+</body>
+
+</html>
