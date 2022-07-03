@@ -11,5 +11,6 @@
     "serve": "lite-server --baseDir public",
     "dev": "start /b npm run build && start /b npm run serve"
 
-  }
+  },
+  "browser" : "Firefox"
 }
