@@ -1,5 +1,6 @@
 const root = document.querySelector('#root');
 
+// jam dan css 
 function tick() {
     const elemen = 
     <div> 
@@ -15,12 +16,15 @@ function tick() {
             heigth:'200px',
             backgroundColor:'blue',
         }}>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate ullam fuga eaque quae, beatae odit distinctio laboriosam saepe culpa expedita?
+            ini ngambil dari warna dari inline css
+        </h2>
+        <br/>
+        <h2 className="box">
+            ini ngambil warna dari file css  
         </h2>
     </div> 
     
 
-    
     ;
 ReactDOM.render(elemen, root);
 };
@@ -28,3 +32,31 @@ ReactDOM.render(elemen, root);
 setInterval(function () {
     tick();
 }, 1000);
+//akhir jam dan css
+
+
+
+//eventHandler
+const eventHandler = document.querySelector('#eventHandler');
+function klik(pesan){
+    alert(pesan)
+};
+
+const tombol = 
+    // <div>
+    //     <button onClick={klik}>
+    //         klik aku!
+    //     </button>
+    //     <br/>
+    // </div>;
+    <div>
+        <button onClick={function(){
+            klik("aku ilhammmm")
+        }}>
+            klik aku!
+        </button>
+        <br/>
+    </div>;
+
+ReactDOM.render(tombol,eventHandler);
+//akhir eventHandler
