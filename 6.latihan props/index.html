@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script type="text/babel">
+        const root = document.querySelector('#root');
+
+        function menyapa(nama) {
+            return <h2>Hai {nama} semoga harimu menyenangkan</h2>
+        };
+
+
+        //props
+        function Menyapa(obj) {
+            return <h2>hai nama kamu {obj.nama} ya?? semoga hari mu bahagia</h2>
+        }
+
+        const namaSaya = 'ilham';
+        const elemen1 = menyapa(namaSaya);
+        const elemen2 = <Menyapa nama={namaSaya} />;
+
+        const penampung = <div>{elemen1}<br />{elemen2}</div>;
+        ReactDOM.render(penampung, root);
+    </script>
+</body>
+
+</html>
