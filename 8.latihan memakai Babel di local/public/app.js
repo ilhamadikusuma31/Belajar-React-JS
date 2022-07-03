@@ -41,3 +41,24 @@ React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
   }
 }, "klik aku!"), /*#__PURE__*/React.createElement("br", null));
 ReactDOM.render(tombol, eventHandler); //akhir eventHandler
+//React.useState()
+
+const state = document.querySelector('#state');
+
+function Penghitung() {
+  //React.useState(value, func bawaan)
+  const state = React.useState(13);
+  const angka = state[0];
+  const setAngka = state[1];
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
+    onClick: function () {
+      setAngka(angka - 1);
+    }
+  }, "-"), /*#__PURE__*/React.createElement("span", null, angka), /*#__PURE__*/React.createElement("button", {
+    onClick: function () {
+      setAngka(angka + 1);
+    }
+  }, "+"));
+}
+
+ReactDOM.render( /*#__PURE__*/React.createElement(Penghitung, null), state); //akhir React.useState()
