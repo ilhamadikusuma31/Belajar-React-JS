@@ -10,7 +10,9 @@
     "build": "babel src --out-dir public -w",
     "serve": "lite-server --baseDir public",
     "dev": "start /b npm run build && start /b npm run serve"
-
   },
-  "browser" : "Firefox"
+  "browser": "Firefox",
+  "dependencies": {
+    "react-dom": "^18.2.0"
+  }
 }
