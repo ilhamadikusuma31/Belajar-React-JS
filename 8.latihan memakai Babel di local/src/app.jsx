@@ -180,35 +180,60 @@
 
 
 
-// list
-const parentObj = ReactDOM.createRoot(document.getElementById('list'));
+// // list
+// const parentObj = ReactDOM.createRoot(document.getElementById('list'));
+// function App() {
+//     const animals =  ['ayam','sapi','kambing','macan','singa']
+//     return(
+//     <> 
+//         <p className="display-5 mt-3">daftar nama (hewan ngambil pake indeks)</p>
+//         <ol>
+//             <li>{animals[0]}</li>
+//             <li>{animals[1]}</li>
+//             <li>{animals[2]}</li>
+//             <li>{animals[3]}</li>
+//             <li>{animals[4]}</li>
+//         </ol>
+//         {/* <p className="display-5 mt-3">daftar nama (hewan ngambil pake map)</p>
+//         <ol>
+//             {animals.map(function(animals){
+//                 return <li>{animals}</li>
+//             })}
+//         </ol> */}
+//         <p className="display-5 mt-3">daftar nama (hewan ngambil pake map) + att key</p>
+//         <ol>
+//             {animals.map(function(a){
+//                 return <li key={a}>{a}</li>
+//             })}
+//         </ol>
+//     </>
+// );
+// }
+// parentObj.render(<App/>);
+// //akhir list
+
+
+// form
+const parentObj = ReactDOM.createRoot(document.getElementById('form'));
 function App() {
-    const animals =  ['ayam','sapi','kambing','macan','singa']
+    //useState => mirip var
+    const [nama,setNama] = React.useState('nama default');
+    function formDiSubmit(event) {
+        event.preventDefault();
+        alert(`hai nama kamu ${nama}`);
+    }
     return(
     <> 
-        <p className="display-5 mt-3">daftar nama (hewan ngambil pake indeks)</p>
-        <ol>
-            <li>{animals[0]}</li>
-            <li>{animals[1]}</li>
-            <li>{animals[2]}</li>
-            <li>{animals[3]}</li>
-            <li>{animals[4]}</li>
-        </ol>
-        {/* <p className="display-5 mt-3">daftar nama (hewan ngambil pake map)</p>
-        <ol>
-            {animals.map(function(animals){
-                return <li>{animals}</li>
-            })}
-        </ol> */}
-        <p className="display-5 mt-3">daftar nama (hewan ngambil pake map) + att key</p>
-        <ol>
-            {animals.map(function(a){
-                return <li key={a}>{a}</li>
-            })}
-        </ol>
+        <form onSubmit={formDiSubmit}>
+            <label className="h2 me-3">Nama:</label>
+            <input type='text' value={nama} onChange={function(e){
+                setNama(e.target.value)
+            }}/>
+            <button type="submit" className="btn btn-primary ms-3">kirim</button>
+        </form> 
     </>
 );
 }
 parentObj.render(<App/>);
-//akhir list
+//akhir form
 

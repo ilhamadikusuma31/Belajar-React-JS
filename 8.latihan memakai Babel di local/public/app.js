@@ -145,20 +145,63 @@
 // }
 // parentObj.render(<App/>);
 // //akhir useRef
-// list
-const parentObj = ReactDOM.createRoot(document.getElementById('list'));
+// // list
+// const parentObj = ReactDOM.createRoot(document.getElementById('list'));
+// function App() {
+//     const animals =  ['ayam','sapi','kambing','macan','singa']
+//     return(
+//     <> 
+//         <p className="display-5 mt-3">daftar nama (hewan ngambil pake indeks)</p>
+//         <ol>
+//             <li>{animals[0]}</li>
+//             <li>{animals[1]}</li>
+//             <li>{animals[2]}</li>
+//             <li>{animals[3]}</li>
+//             <li>{animals[4]}</li>
+//         </ol>
+//         {/* <p className="display-5 mt-3">daftar nama (hewan ngambil pake map)</p>
+//         <ol>
+//             {animals.map(function(animals){
+//                 return <li>{animals}</li>
+//             })}
+//         </ol> */}
+//         <p className="display-5 mt-3">daftar nama (hewan ngambil pake map) + att key</p>
+//         <ol>
+//             {animals.map(function(a){
+//                 return <li key={a}>{a}</li>
+//             })}
+//         </ol>
+//     </>
+// );
+// }
+// parentObj.render(<App/>);
+// //akhir list
+// form
+const parentObj = ReactDOM.createRoot(document.getElementById('form'));
 
 function App() {
-  const animals = ['ayam', 'sapi', 'kambing', 'macan', 'singa'];
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("p", {
-    className: "display-5 mt-3"
-  }, "daftar nama (hewan ngambil pake indeks)"), /*#__PURE__*/React.createElement("ol", null, /*#__PURE__*/React.createElement("li", null, animals[0]), /*#__PURE__*/React.createElement("li", null, animals[1]), /*#__PURE__*/React.createElement("li", null, animals[2]), /*#__PURE__*/React.createElement("li", null, animals[3]), /*#__PURE__*/React.createElement("li", null, animals[4])), /*#__PURE__*/React.createElement("p", {
-    className: "display-5 mt-3"
-  }, "daftar nama (hewan ngambil pake map) + att key"), /*#__PURE__*/React.createElement("ol", null, animals.map(function (a) {
-    return /*#__PURE__*/React.createElement("li", {
-      key: a
-    }, a);
-  })));
+  //useState => mirip var
+  const [nama, setNama] = React.useState('nama default');
+
+  function formDiSubmit(event) {
+    event.preventDefault();
+    alert(`hai nama kamu ${nama}`);
+  }
+
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("form", {
+    onSubmit: formDiSubmit
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "h2 me-3"
+  }, "Nama:"), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    value: nama,
+    onChange: function (e) {
+      setNama(e.target.value);
+    }
+  }), /*#__PURE__*/React.createElement("button", {
+    type: "submit",
+    className: "btn btn-primary ms-3"
+  }, "kirim")));
 }
 
-parentObj.render( /*#__PURE__*/React.createElement(App, null)); //akhir list
+parentObj.render( /*#__PURE__*/React.createElement(App, null)); //akhir form
