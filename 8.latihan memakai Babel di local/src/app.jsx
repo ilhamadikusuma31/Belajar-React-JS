@@ -152,36 +152,63 @@
 
 
 
-// useRef : gantinya dom untuk id atau class pada objek html
-// jika value berubah ga melakukan re-render 
-const parentObj = ReactDOM.createRoot(document.getElementById('useRef'));
+// // useRef : gantinya dom untuk id atau class pada objek html
+// // jika value berubah ga melakukan re-render 
+// const parentObj = ReactDOM.createRoot(document.getElementById('use-Ref'));
+// function App() {
+//     const [login, setLogin]= React.useState(false);
+//     //nama var harus sesuai di ref
+//     const judul = React.useRef(null); 
+//     React.useEffect(function () {
+//         // console.log(judul.current);
+//         setTimeout(() => {
+//             judul.current.textContent = 'timpa judul banh';
+//         }, 5000);
+//     },[])
+//     return(
+//         <> 
+//         <h1 ref={judul}>Hello login banh</h1>
+//         <p>{login?'anda sudah login':''}</p>
+//         <button className="btn btn-outline-success" onClick={function(){
+//             setLogin(true);
+//         }}>Login</button>
+//     </>
+// );
+// }
+// parentObj.render(<App/>);
+// //akhir useRef
+
+
+
+// list
+const parentObj = ReactDOM.createRoot(document.getElementById('list'));
 function App() {
-    const [login, setLogin]= React.useState(false);
-
-
-    //nama var harus sesuai di ref
-    const judul = React.useRef(null); 
-
-    React.useEffect(function () {
-        // console.log(judul.current);
-        setTimeout(() => {
-            judul.current.textContent = 'timpa judul banh';
-        }, 5000);
-    },[])
-
-
-
+    const animals =  ['ayam','sapi','kambing','macan','singa']
     return(
-        <> 
-        <h1 ref={judul}>Hello login banh</h1>
-        <p>{login?'anda sudah login':''}</p>
-        <button className="btn btn-outline-success" onClick={function(){
-            setLogin(true);
-        }}>Login</button>
+    <> 
+        <p className="display-5 mt-3">daftar nama (hewan ngambil pake indeks)</p>
+        <ol>
+            <li>{animals[0]}</li>
+            <li>{animals[1]}</li>
+            <li>{animals[2]}</li>
+            <li>{animals[3]}</li>
+            <li>{animals[4]}</li>
+        </ol>
+        {/* <p className="display-5 mt-3">daftar nama (hewan ngambil pake map)</p>
+        <ol>
+            {animals.map(function(animals){
+                return <li>{animals}</li>
+            })}
+        </ol> */}
+        <p className="display-5 mt-3">daftar nama (hewan ngambil pake map) + att key</p>
+        <ol>
+            {animals.map(function(a){
+                return <li key={a}>{a}</li>
+            })}
+        </ol>
     </>
-
 );
 }
 parentObj.render(<App/>);
-//akhir useRef
+//akhir list
 

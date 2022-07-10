@@ -120,28 +120,45 @@
 // }
 // parentObj.render(<App/>);
 // //akhir conditional rendering
-// useRef : gantinya dom untuk id atau class pada objek html
-// jika value berubah ga melakukan re-render 
-const parentObj = ReactDOM.createRoot(document.getElementById('useRef'));
+// // useRef : gantinya dom untuk id atau class pada objek html
+// // jika value berubah ga melakukan re-render 
+// const parentObj = ReactDOM.createRoot(document.getElementById('use-Ref'));
+// function App() {
+//     const [login, setLogin]= React.useState(false);
+//     //nama var harus sesuai di ref
+//     const judul = React.useRef(null); 
+//     React.useEffect(function () {
+//         // console.log(judul.current);
+//         setTimeout(() => {
+//             judul.current.textContent = 'timpa judul banh';
+//         }, 5000);
+//     },[])
+//     return(
+//         <> 
+//         <h1 ref={judul}>Hello login banh</h1>
+//         <p>{login?'anda sudah login':''}</p>
+//         <button className="btn btn-outline-success" onClick={function(){
+//             setLogin(true);
+//         }}>Login</button>
+//     </>
+// );
+// }
+// parentObj.render(<App/>);
+// //akhir useRef
+// list
+const parentObj = ReactDOM.createRoot(document.getElementById('list'));
 
 function App() {
-  const [login, setLogin] = React.useState(false); //nama var harus sesuai di ref
-
-  const judul = React.useRef(null);
-  React.useEffect(function () {
-    // console.log(judul.current);
-    setTimeout(() => {
-      judul.current.textContent = 'timpa judul banh';
-    }, 5000);
-  }, []);
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", {
-    ref: judul
-  }, "Hello login banh"), /*#__PURE__*/React.createElement("p", null, login ? 'anda sudah login' : ''), /*#__PURE__*/React.createElement("button", {
-    className: "btn btn-outline-success",
-    onClick: function () {
-      setLogin(true);
-    }
-  }, "Login"));
+  const animals = ['ayam', 'sapi', 'kambing', 'macan', 'singa'];
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("p", {
+    className: "display-5 mt-3"
+  }, "daftar nama (hewan ngambil pake indeks)"), /*#__PURE__*/React.createElement("ol", null, /*#__PURE__*/React.createElement("li", null, animals[0]), /*#__PURE__*/React.createElement("li", null, animals[1]), /*#__PURE__*/React.createElement("li", null, animals[2]), /*#__PURE__*/React.createElement("li", null, animals[3]), /*#__PURE__*/React.createElement("li", null, animals[4])), /*#__PURE__*/React.createElement("p", {
+    className: "display-5 mt-3"
+  }, "daftar nama (hewan ngambil pake map) + att key"), /*#__PURE__*/React.createElement("ol", null, animals.map(function (a) {
+    return /*#__PURE__*/React.createElement("li", {
+      key: a
+    }, a);
+  })));
 }
 
-parentObj.render( /*#__PURE__*/React.createElement(App, null)); //akhir useRef
+parentObj.render( /*#__PURE__*/React.createElement(App, null)); //akhir list
