@@ -213,27 +213,72 @@
 // //akhir list
 
 
-// form
-const parentObj = ReactDOM.createRoot(document.getElementById('form'));
+// // form
+// const parentObj = ReactDOM.createRoot(document.getElementById('form'));
+// function App() {
+//     //useState => mirip var
+//     const [nama,setNama] = React.useState('nama default');
+//     function formDiSubmit(event) {
+//         event.preventDefault();
+//         alert(`hai nama kamu ${nama}`);
+//     }
+//     return(
+//     <> 
+//         <form onSubmit={formDiSubmit}>
+//             <label className="h2 me-3">Nama:</label>
+//             <input type='text' value={nama} onChange={function(e){
+//                 setNama(e.target.value)
+//             }}/>
+//             <button type="submit" className="btn btn-primary ms-3">kirim</button>
+//         </form> 
+//     </>
+// );
+// }
+// parentObj.render(<App/>);
+// //akhir form
+
+
+// fetch
+const parentObj = ReactDOM.createRoot(document.getElementById('fetch'));
 function App() {
-    //useState => mirip var
-    const [nama,setNama] = React.useState('nama default');
-    function formDiSubmit(event) {
-        event.preventDefault();
-        alert(`hai nama kamu ${nama}`);
-    }
+
+    //set berita array kosong karena dapet data bentuk array
+    const [berita, setBerita] = React.useState([]);
+    const [loading, setLoading] = React.useState(true);
+
+
+    //untuk mengecek update
+    React.useEffect(function (){ 
+
+        //karena async biasanya dia jalan secara paralel maka perlu kita tambahkan await agar bisa seperti sync (codingan biasa) nunggu kelar diproses
+        async function getData() {
+            const req = await fetch('https://api.spaceflightnewsapi.net/v3/blogs');
+            console.log(req);
+
+            const res = await req.json();
+            setBerita(res);
+
+
+        }
+
+        getData();
+
+    },[]);
+
     return(
-    <> 
-        <form onSubmit={formDiSubmit}>
-            <label className="h2 me-3">Nama:</label>
-            <input type='text' value={nama} onChange={function(e){
-                setNama(e.target.value)
-            }}/>
-            <button type="submit" className="btn btn-primary ms-3">kirim</button>
-        </form> 
-    </>
-);
+        <>
+            <h1>Data Fetch</h1>
+
+            <ul>
+                <li>
+                    {berita.map(function(b){
+                        return <li>{b.title}</li>
+                    })}
+                </li>
+            </ul>
+        </>
+    )
 }
 parentObj.render(<App/>);
-//akhir form
+//akhir fetch
 

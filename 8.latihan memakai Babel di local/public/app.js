@@ -176,32 +176,51 @@
 // }
 // parentObj.render(<App/>);
 // //akhir list
-// form
-const parentObj = ReactDOM.createRoot(document.getElementById('form'));
+// // form
+// const parentObj = ReactDOM.createRoot(document.getElementById('form'));
+// function App() {
+//     //useState => mirip var
+//     const [nama,setNama] = React.useState('nama default');
+//     function formDiSubmit(event) {
+//         event.preventDefault();
+//         alert(`hai nama kamu ${nama}`);
+//     }
+//     return(
+//     <> 
+//         <form onSubmit={formDiSubmit}>
+//             <label className="h2 me-3">Nama:</label>
+//             <input type='text' value={nama} onChange={function(e){
+//                 setNama(e.target.value)
+//             }}/>
+//             <button type="submit" className="btn btn-primary ms-3">kirim</button>
+//         </form> 
+//     </>
+// );
+// }
+// parentObj.render(<App/>);
+// //akhir form
+// fetch
+const parentObj = ReactDOM.createRoot(document.getElementById('fetch'));
 
 function App() {
-  //useState => mirip var
-  const [nama, setNama] = React.useState('nama default');
+  //set berita array kosong karena dapet data bentuk array
+  const [berita, setBerita] = React.useState([]);
+  const [loading, setLoading] = React.useState(true); //untuk mengecek update
 
-  function formDiSubmit(event) {
-    event.preventDefault();
-    alert(`hai nama kamu ${nama}`);
-  }
-
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("form", {
-    onSubmit: formDiSubmit
-  }, /*#__PURE__*/React.createElement("label", {
-    className: "h2 me-3"
-  }, "Nama:"), /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    value: nama,
-    onChange: function (e) {
-      setNama(e.target.value);
+  React.useEffect(function () {
+    //karena async biasanya dia jalan secara paralel maka perlu kita tambahkan await agar bisa seperti sync (codingan biasa) nunggu kelar diproses
+    async function getData() {
+      const req = await fetch('https://api.spaceflightnewsapi.net/v3/blogs');
+      console.log(req);
+      const res = await req.json();
+      setBerita(res);
     }
-  }), /*#__PURE__*/React.createElement("button", {
-    type: "submit",
-    className: "btn btn-primary ms-3"
-  }, "kirim")));
+
+    getData();
+  }, []);
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Data Fetch"), /*#__PURE__*/React.createElement("ul", null, /*#__PURE__*/React.createElement("li", null, berita.map(function (b) {
+    return /*#__PURE__*/React.createElement("li", null, b.title);
+  }))));
 }
 
-parentObj.render( /*#__PURE__*/React.createElement(App, null)); //akhir form
+parentObj.render( /*#__PURE__*/React.createElement(App, null)); //akhir fetch
