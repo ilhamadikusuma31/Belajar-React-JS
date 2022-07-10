@@ -1,0 +1,10 @@
+body{
+    background-color: #f5e8c4;
+}
+
+.box{
+    width: 200px;
+    height: 200px;
+    background-color: salmon;
+    margin: 10vh, 10vh;
+}
