@@ -31,7 +31,9 @@ function App() {
             updatedSeluruhAktivitas[indexAktivitas] = updateData;
             setSeluruhAktivitas(updatedSeluruhAktivitas);
 
-            return //biar code bawah ga jalan
+            //biar code bawah ga jalan
+            return batalEdit();
+            
         }
 
         //menambah data baru ke list aktivitas
@@ -62,6 +64,11 @@ function App() {
 
     }
 
+    function batalEdit() {
+        console.log('hai');
+        setEdit({});
+        setAktivitas('');
+    }
 
 
 
@@ -87,6 +94,7 @@ function App() {
                 <button type='submit' className="btn btn-primary ms-2" >
                     {edit.id?'simpan perubahan':'simpan '}
                 </button>
+                {edit.id&&<button onClick={batalEdit} className='btn btn-danger ms-1'>batal</button>}
             </form>
         </>
     );

@@ -27,8 +27,9 @@ function App() {
       const updatedSeluruhAktivitas = [...seluruhAktivitas]; // console.log(updatedSeluruhAktivitas);
 
       updatedSeluruhAktivitas[indexAktivitas] = updateData;
-      setSeluruhAktivitas(updatedSeluruhAktivitas);
-      return; //biar code bawah ga jalan
+      setSeluruhAktivitas(updatedSeluruhAktivitas); //biar code bawah ga jalan
+
+      return batalEdit();
     } //menambah data baru ke list aktivitas
 
 
@@ -52,6 +53,12 @@ function App() {
     setAktivitas(data.nama_aktivitas); //nama_aktivitas
 
     setEdit(data); //{id,nama_aktivitas}
+  }
+
+  function batalEdit() {
+    console.log('hai');
+    setEdit({});
+    setAktivitas('');
   }
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
@@ -78,7 +85,10 @@ function App() {
   }), /*#__PURE__*/React.createElement("button", {
     type: "submit",
     className: "btn btn-primary ms-2"
-  }, edit.id ? 'simpan perubahan' : 'simpan ')));
+  }, edit.id ? 'simpan perubahan' : 'simpan '), edit.id && /*#__PURE__*/React.createElement("button", {
+    onClick: batalEdit,
+    className: "btn btn-danger ms-1"
+  }, "batal")));
 }
 
 parentObj.render( /*#__PURE__*/React.createElement(App, null));
