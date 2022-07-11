@@ -1,31 +1,57 @@
 const parentObj = ReactDOM.createRoot(document.getElementById('root'));
 
 function App() {
-  const [aktivitas, setAktivitas] = React.useState('');
-  const [seluruhAktivitas, setSeluruhAktivitas] = React.useState([]);
+  const [aktivitas, setAktivitas] = React.useState(''); //menampung calon data.aktivitas (str)
 
-  function tambahAktivitas(e) {
+  const [seluruhAktivitas, setSeluruhAktivitas] = React.useState([]); //menampung seluruh data         (array[{},{}..])
+
+  const [edit, setEdit] = React.useState({}); //menampung id, aktivitas        ({})
+
+  function simpanAktivitas(e) {
     e.preventDefault(); // //ini tuh sama aja kayak seluruhAktivitas.append(aktivitas)
     // setSeluruhAktivitas([...seluruhAktivitas, aktivitas]); 
 
     function generateId() {
       return Date.now();
+    } //kalo update data saja
+
+
+    if (edit.id) {
+      const updateData = {
+        id: edit.id,
+        nama_aktivitas: aktivitas
+      };
+      const indexAktivitas = seluruhAktivitas.findIndex(function (row) {
+        return row.id == edit.id;
+      });
+      const updatedSeluruhAktivitas = [...seluruhAktivitas]; // console.log(updatedSeluruhAktivitas);
+
+      updatedSeluruhAktivitas[indexAktivitas] = updateData;
+      setSeluruhAktivitas(updatedSeluruhAktivitas);
+      return; //biar code bawah ga jalan
     } //menambah data baru ke list aktivitas
 
 
     setSeluruhAktivitas([...seluruhAktivitas, {
       id: generateId(),
-      aktivitas: aktivitas
+      nama_aktivitas: aktivitas
     }]); //kosongkan form
 
     setAktivitas('');
   }
 
-  function hapusAktivitas(todoId) {
+  function hapusAktivitas(dataId) {
     const seluruhAktivitasFiltered = seluruhAktivitas.filter(function (row) {
-      return row.id != todoId;
+      return row.id != dataId;
     });
     setSeluruhAktivitas(seluruhAktivitasFiltered);
+  }
+
+  function editAktivitas(data) {
+    //data => menampung data yang ingin diedit      
+    setAktivitas(data.nama_aktivitas); //nama_aktivitas
+
+    setEdit(data); //{id,nama_aktivitas}
   }
 
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
@@ -33,12 +59,15 @@ function App() {
   }, "To Do List"), /*#__PURE__*/React.createElement("ol", null, seluruhAktivitas.map(function (a) {
     return /*#__PURE__*/React.createElement("li", {
       key: a.id
-    }, a.aktivitas, /*#__PURE__*/React.createElement("button", {
+    }, a.nama_aktivitas, /*#__PURE__*/React.createElement("button", {
       onClick: hapusAktivitas.bind(this, a.id),
       className: "badge text-bg-danger"
-    }, "hapus"));
+    }, "hapus"), /*#__PURE__*/React.createElement("button", {
+      onClick: editAktivitas.bind(this, a),
+      className: "badge text-bg-secondary"
+    }, "edit"));
   })), /*#__PURE__*/React.createElement("form", {
-    onSubmit: tambahAktivitas
+    onSubmit: simpanAktivitas
   }, /*#__PURE__*/React.createElement("label", null, "Masukkan aktivitas:"), /*#__PURE__*/React.createElement("input", {
     type: "text",
     value: aktivitas,
@@ -49,7 +78,7 @@ function App() {
   }), /*#__PURE__*/React.createElement("button", {
     type: "submit",
     className: "btn btn-primary ms-2"
-  }, "tambah")));
+  }, edit.id ? 'simpan perubahan' : 'simpan ')));
 }
 
 parentObj.render( /*#__PURE__*/React.createElement(App, null));
